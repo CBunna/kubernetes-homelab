@@ -41,3 +41,17 @@ Prometheus will auto-discover all Kubernetes components and start collecting met
 Grafana will have pre-built dashboards.
 
 You can also create custom dashboards.
+
+
+
+COMMAND:
+(Check service monitoring)
+kubectl get svc -n monitoring
+
+
+This exposes port 3000 on all interfaces (including the VM’s IP).
+
+Run this on the K8s master node:
+kubectl port-forward --address=0.0.0.0 svc/prometheus-stack-grafana 3000:80 -n monitoring
+
+
