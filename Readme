@@ -1,0 +1,43 @@
+
+Install Prometheus and Grafana
+install them inside  Kubernetes cluster — as pods running on any of the nodes (doesn’t matter if it's worker or master node).
+This is the standard, scalable, and Kubernetes-native way. 
+
+Use kube-prometheus-stack
+Install the kube-prometheus-stack Helm chart. It includes:
+
+Prometheus
+
+Grafana
+
+Node Exporter (for metrics)
+
+Alertmanager
+
+All configurations ready to monitor your cluster
+
+Installation:
+
+Add the Helm repo:
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+
+Create the namespace:
+helm install prometheus-stack prometheus-community/kube-prometheus-stack --namespace monitoring
+
+Wait for pods to be running:
+kubectl port-forward svc/prometheus-stack-grafana 3000:80 -n monitoring
+
+Then open: http://localhost:3000
+Default login:
+
+user: admin
+
+password: prom-operator (you can change this)
+
+After Installation
+Prometheus will auto-discover all Kubernetes components and start collecting metrics.
+
+Grafana will have pre-built dashboards.
+
+You can also create custom dashboards.
