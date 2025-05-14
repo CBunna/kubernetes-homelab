@@ -1,57 +1,64 @@
+🧪 Home Lab Kubernetes Cluster for DevOps Learning
+Welcome to my home lab project! This setup is designed as a personal learning environment to explore Kubernetes, DevOps tools, and infrastructure automation using repurposed hardware and open-source technologies.
 
-Install Prometheus and Grafana
-install them inside  Kubernetes cluster — as pods running on any of the nodes (doesn’t matter if it's worker or master node).
-This is the standard, scalable, and Kubernetes-native way. 
+🚀 Project Goals
+Learn and experiment with Kubernetes architecture and components.
 
-Use kube-prometheus-stack
-Install the kube-prometheus-stack Helm chart. It includes:
+Gain hands-on experience with container orchestration, CI/CD, and infrastructure as code.
 
-Prometheus
+Build a cost-effective home lab using Proxmox VE and an old Dell laptop.
 
-Grafana
+🏗️ Lab Infrastructure
+Component	Description
+🖥️ Hardware	Old Dell Laptop (8GB RAM, 256GB SSD)
+🔧 Hypervisor	Proxmox VE
+🌐 Network	Virtual network bridged for all VMs
+📦 Nodes	1x Kubernetes Master, 2x Kubernetes Workers
+🧰 Tools	Kubeadm, kubectl,kubelet, Helm, Docker/Containerd
 
-Node Exporter (for metrics)
+🧱 Virtual Machines
+All VMs run a lightweight Linux distribution (e.g. Ubuntu Server).
 
-Alertmanager
+Kubernetes Cluster Layout
+lua
+Copy
+Edit
++-----------------+       +-----------------+       +-----------------+
+|  Master Node    | <---> |  Worker Node 1  | <---> |  Worker Node 2  |
+|  kube-apiserver |       |  kubelet        |       |  kubelet        |
+|  etcd, kubelet  |       |  containerd     |       |  containerd     |
++-----------------+       +-----------------+       +-----------------+
 
-All configurations ready to monitor your cluster
+⚙️ Features & Setup
+Provisioned using Proxmox VE (manual VM creation)
 
-Installation:
+Kubernetes cluster initialized using kubeadm
 
-Add the Helm repo:
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-helm repo update
+Nodes joined with token and kubeadm join
 
-Create the namespace:
-helm install prometheus-stack prometheus-community/kube-prometheus-stack --namespace monitoring
+Basic networking configured using Calico or Flannel
 
-Wait for pods to be running:
-kubectl port-forward svc/prometheus-stack-grafana 3000:80 -n monitoring
+Container runtime: containerd or Docker
 
-Then open: http://localhost:3000
-Default login:
+Access to the cluster via local kubectl
 
-user: admin
+📚 Learning Topics
+Kubernetes architecture: Master & worker roles, pods, services
 
-password: prom-operator (you can change this)
+Cluster provisioning & scaling
 
-After Installation
-Prometheus will auto-discover all Kubernetes components and start collecting metrics.
+Troubleshooting deployments
 
-Grafana will have pre-built dashboards.
+Deploying apps via Helm charts
 
-You can also create custom dashboards.
+CI/CD integration (future milestone)
+
+Monitoring (Prometheus + Grafana, planned)
 
 
 
-COMMAND:
-(Check service monitoring)
-kubectl get svc -n monitoring
 
 
-This exposes port 3000 on all interfaces (including the VM’s IP).
 
-Run this on the K8s master node:
-kubectl port-forward --address=0.0.0.0 svc/prometheus-stack-grafana 3000:80 -n monitoring
 
 
