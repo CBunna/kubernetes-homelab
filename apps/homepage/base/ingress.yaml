@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: homepage
+  namespace: homepage
+  annotations:
+    kubernetes.io/ingress.class: nginx  # Adjust based on your ingress controller
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/name: "Homepage"
+    gethomepage.dev/description: "Homelab Dashboard"
+    gethomepage.dev/group: "Infrastructure"
+    gethomepage.dev/icon: "homepage.png"
+spec:
+  rules:
+    - host: homepage.local  # Update with your domain
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: homepage
+                port:
+                  number: 80
