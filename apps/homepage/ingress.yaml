@@ -1,0 +1,40 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: homepage
+  namespace: homepage
+  labels:
+    app.kubernetes.io/name: homepage
+  annotations:
+    # Add your ingress controller specific annotations here
+    # For example, if using nginx-ingress:
+    # nginx.ingress.kubernetes.io/rewrite-target: /
+    # kubernetes.io/ingress.class: nginx
+    
+    # For traefik:
+    # traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
+    # traefik.ingress.kubernetes.io/router.tls: "true"
+    
+    # Homepage self-discovery annotations
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/description: "Dashboard for CBunna's Home Lab"
+    gethomepage.dev/group: "Infrastructure"
+    gethomepage.dev/icon: "homepage.png"
+    gethomepage.dev/name: "Homepage"
+spec:
+  rules:
+    - host: homepage.local  # Change this to your domain
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: homepage
+                port:
+                  number: 3000
+  # Uncomment and configure if you want TLS
+  # tls:
+  #   - hosts:
+  #       - homepage.local
+  #     secretName: homepage-tls

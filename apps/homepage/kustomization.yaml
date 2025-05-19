@@ -1,0 +1,26 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+metadata:
+  name: homepage
+  namespace: homepage
+
+resources:
+  - namespace.yaml
+  - serviceaccount.yaml
+  - secret.yaml
+  - clusterrole.yaml
+  - clusterrolebinding.yaml
+  - configmap.yaml
+  - deployment.yaml
+  - service.yaml
+  - ingress.yaml
+
+commonLabels:
+  app.kubernetes.io/name: homepage
+  app.kubernetes.io/instance: homepage
+  app.kubernetes.io/component: dashboard
+
+images:
+  - name: ghcr.io/gethomepage/homepage
+    newTag: latest

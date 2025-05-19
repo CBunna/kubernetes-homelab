@@ -3,11 +3,14 @@ kind: Service
 metadata:
   name: homepage
   namespace: homepage
+  labels:
+    app.kubernetes.io/name: homepage
 spec:
+  type: ClusterIP
   ports:
-    - port: 80
-      targetPort: 3000
+    - port: 3000
+      targetPort: http
       protocol: TCP
       name: http
   selector:
-    app: homepage
+    app.kubernetes.io/name: homepage
