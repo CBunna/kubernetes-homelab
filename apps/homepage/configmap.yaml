@@ -40,149 +40,67 @@ data:
     hideVersion: false
   
   services.yaml: |
-    - Personal:
-        - Nextcloud:
-            href: https://nextcloud.local
-            description: Personal cloud storage
-            icon: nextcloud.png
-            namespace: nextcloud
-            app: nextcloud
-            widget:
-              type: nextcloud
-              url: https://nextcloud.local
-              username: "{{HOMEPAGE_VAR_NEXTCLOUD_USER}}"
-              password: "{{HOMEPAGE_VAR_NEXTCLOUD_PASS}}"
-        
-        - Vaultwarden:
-            href: https://vault.local
-            description: Password manager
-            icon: bitwarden.png
-            namespace: security
-            app: vaultwarden
-            widget:
-              type: vaultwarden
-              url: https://vault.local
-    
     - Media:
-        - Plex:
-            href: https://plex.local
-            description: Media server
-            icon: plex.png
-            namespace: media
-            app: plex
-            widget:
-              type: plex
-              url: https://plex.local
-              key: "{{HOMEPAGE_VAR_PLEX_TOKEN}}"
-        
-        - Jellyfin:
-            href: https://jellyfin.local
-            description: Alternative media server
-            icon: jellyfin.png
-            namespace: media
-            app: jellyfin
-            widget:
-              type: jellyfin
-              url: https://jellyfin.local
-              username: "{{HOMEPAGE_VAR_JELLYFIN_USER}}"
-              password: "{{HOMEPAGE_VAR_JELLYFIN_PASS}}"
-        
-        - Transmission:
-            href: https://transmission.local
-            description: BitTorrent client
-            icon: transmission.png
-            namespace: media
-            app: transmission
-            widget:
-              type: transmission
-              url: https://transmission.local
-              username: "{{HOMEPAGE_VAR_TRANSMISSION_USER}}"
-              password: "{{HOMEPAGE_VAR_TRANSMISSION_PASS}}"
-    
+        - YouTube:
+            href: https://youtube.com
+            description: Video streaming platform
+            icon: youtube.png
+      
+        - Netflix:
+            href: https://netflix.com
+            description: Movies and TV streaming
+            icon: netflix.png
+      
+        - Spotify:
+            href: https://open.spotify.com
+            description: Music streaming
+            icon: spotify.png
+
+    - AI & Productivity:
+        - Claude AI:
+            href: https://claude.ai
+            description: AI assistant by Anthropic
+            icon: anthropic.png
+      
+        - ChatGPT:
+            href: https://chat.openai.com
+            description: OpenAI's conversational AI
+            icon: openai.png
+      
+
     - Infrastructure:
         - Proxmox:
-            href: https://proxmox.local:8006
+            href: https://192.168.0.65:8006
             description: Virtualization platform
             icon: proxmox.png
-            widget:
-              type: proxmox
-              url: https://proxmox.local:8006
-              username: "{{HOMEPAGE_VAR_PROXMOX_USER}}"
-              password: "{{HOMEPAGE_VAR_PROXMOX_PASS}}"
-        
-        - Portainer:
-            href: https://portainer.local
-            description: Container management
-            icon: portainer.png
-            namespace: portainer
-            app: portainer
-            widget:
-              type: portainer
-              url: https://portainer.local
-              env: 2
-              key: "{{HOMEPAGE_VAR_PORTAINER_KEY}}"
-        
-        - TrueNAS:
-            href: https://truenas.local
-            description: Network attached storage
-            icon: truenas.png
-            widget:
-              type: truenas
-              url: https://truenas.local
-              username: "{{HOMEPAGE_VAR_TRUENAS_USER}}"
-              password: "{{HOMEPAGE_VAR_TRUENAS_PASS}}"
-        
-        - pfSense:
-            href: https://pfsense.local
-            description: Firewall and router
-            icon: pfsense.png
-            widget:
-              type: pfsense
-              url: https://pfsense.local
-              username: "{{HOMEPAGE_VAR_PFSENSE_USER}}"
-              password: "{{HOMEPAGE_VAR_PFSENSE_PASS}}"
-    
+ 
     - Monitoring:
         - Grafana:
-            href: https://grafana.local
+            href: http://192.168.0.61:31238
             description: Monitoring dashboards
             icon: grafana.png
             namespace: monitoring
-            app: grafana
-            widget:
-              type: grafana
-              url: https://grafana.local
-              username: "{{HOMEPAGE_VAR_GRAFANA_USER}}"
-              password: "{{HOMEPAGE_VAR_GRAFANA_PASS}}"
         
         - Prometheus:
-            href: https://prometheus.local
+            href: http://192.168.0.116:32311
             description: Metrics collection
             icon: prometheus.png
             namespace: monitoring
-            app: prometheus
-            widget:
-              type: prometheus
-              url: https://prometheus.local
-        
-        - Uptime Kuma:
-            href: https://uptime.local
-            description: Uptime monitoring
-            icon: uptime-kuma.png
-            namespace: monitoring
-            app: uptime-kuma
-            widget:
-              type: uptimekuma
-              url: https://uptime.local
-              slug: "{{HOMEPAGE_VAR_UPTIMEKUMA_SLUG}}"
+
+        - ArgoCD:
+            href:   https://192.168.0.61:30227
+            description: GitOps
+            icon: "🔄"
+            namespace: argocd
+
   
   widgets.yaml: |
-    - logo:
-        icon: /images/logo.png
+    # - logo:
+    #     icon: /images/logo.png
     
     - greeting:
         text_size: xl
-        text: "Welcome to CBunna's Home Lab"
+        text: "🏠 CBunna's Home Lab"
     
     - datetime:
         text_size: xl
