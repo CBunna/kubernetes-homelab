@@ -1,0 +1,33 @@
+# This service handles DNS requests
+apiVersion: v1
+kind: Service
+metadata:
+  name: pihole-dns
+  namespace: pihole
+spec:
+  selector:
+    app: pihole
+  ports:
+  - name: dns-tcp
+    port: 53
+    protocol: TCP
+  - name: dns-udp
+    port: 53
+    protocol: UDP
+  type: ClusterIP
+---
+# This service provides access to the web interface
+apiVersion: v1
+kind: Service
+metadata:
+  name: pihole-web
+  namespace: pihole
+spec:
+  selector:
+    app: pihole
+  ports:
+  - name: web
+    port: 80
+    targetPort: 80
+    nodePort: 30080
+  type: NodePort
